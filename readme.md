@@ -1,5 +1,3 @@
-use Malico\MeSomb\Helper\HasPayments;
-
 # Laravel MeSomb
 
 Laravel Wrapper on top of MeSomb Payment API
@@ -186,10 +184,6 @@ Examples
         }
     }
     ```
-
-### Transactions
-
-Check
 
 #### Author
 

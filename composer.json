@@ -1,0 +1,35 @@
+{
+    "name": "malico/laravel-mesomb",
+    "description": "A laravel wrapper on top of Mesomb Payment API",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Malico",
+            "email": "hi@malico.me"
+        }
+    ],
+    "require": {
+        "php": "^7.2.5",
+        "guzzlehttp/guzzle": "^6.5",
+        "illuminate/support": "~5.7|^6.0|^7.0",
+        "illuminate/database": "~5.7|^6.0|^7.0",
+        "malico/mobile-cm-php": "^1.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Malico\\MeSomb\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Malico\\MeSomb\\MeSombServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

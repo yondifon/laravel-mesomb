@@ -1,4 +1,5 @@
 <?php
+
 namespace Malico\MeSomb\Helper;
 
 trait PaymentData
@@ -70,7 +71,7 @@ trait PaymentData
     /**
      * Modify Payer
      *
-     * @param  string|int $value
+     * @param string|int $value
      *
      * @return Malico\MeSomb\Payment
      */

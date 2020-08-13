@@ -4,6 +4,7 @@ namespace Malico\MeSomb;
 
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Http;
+use Malico\Momo\Model\Transaction;
 
 class Transaction
 {
@@ -12,9 +13,14 @@ class Transaction
      *
      * @return string
      */
-    public static function getURL() : string
+    public static function getURL(string $id) : string
     {
-        return "https://mesomb.hachther.com/api/" . config('mesomb.version') . "/payment/online/";
+        return "https://mesomb.hachther.com/api/" .
+            config('mesomb.version') .
+            "/applications/" .
+            config('mesomb.key') .
+            "/transactions/".
+            $id;
     }
     
     /**
@@ -26,29 +32,29 @@ class Transaction
      */
     public static function checkStatus($model)
     {
-        $headers = [
-            'X-MeSomb-Application' => config('mesomb.key'),
-            'X-MeSomb-RequestId' => $model->id
-        ];
+        if (is_string($model)) {
+            $id = $model;
+        } else {
+            $id = $model->transaction->pk;
+        }
 
-        $data = [
-            'reference' => $model->id
-        ];
-
-        $response = Http::withToken(config('mesomb.api_key'))
-            ->withHeaders($headers)
-            ->get(self::getURL(), $data);
+        $response = Http::withToken(config('mesomb.api_key'), 'Token')
+            ->get(self::getURL($id));
 
         $response->throw();
             
         if ($response->successful()) {
-            $data = json_decode($response, true);
+            $data = $response->json();
 
             $data['ts'] = Carbon::parse($data['ts']);
 
-            $model->transaction()->updateOrCreate($data);
-
-            return $model->transaction;
+            if (! is_string($model)) {
+                $model->transaction()->updateOrCreate($data);
+                
+                return $model->transaction;
+            } else {
+                return Transaction::updateOrCreate($data);
+            }
         }
 
         return null;

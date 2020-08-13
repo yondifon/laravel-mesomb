@@ -44,6 +44,5 @@ class CheckFailedTransactions implements ShouldQueue
         if ($transaction->successful()) {
             $this->model->toggleToSuccess();
         }
-        logger($transaction);
     }
 }

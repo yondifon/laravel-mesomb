@@ -14,6 +14,11 @@ trait HasTransactions
         return $this->morphOne('Malico\MeSomb\Model\Transaction', 'transacable');
     }
 
+    /**
+     * Succesful Transactoin
+     *
+     * @return void
+     */
     public function toggleToSuccess()
     {
         $this->update(['success' => true]);

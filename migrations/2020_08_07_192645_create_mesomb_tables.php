@@ -33,11 +33,10 @@ class CreateMesombTables extends Migration
                 $table->string('redirect')->nullable();
 
                 // Post Request
-                $table->text('response_message')->nullable();
                 $table->boolean('success')->default(false);
                 $table->enum('status', ['FAIL', 'SUCCESS'])->nullable();
 
-                if (config('mesomb.payable.uuid')) {
+                if (config('mesomb.uses_uuid')) {
                     $table->nullableUuidMorphs('payable');
                 } else {
                     $table->nullableMorphs('payable');
@@ -63,6 +62,12 @@ class CreateMesombTables extends Migration
                 $table->boolean('success')->default(false);
                 $table->enum('status', ['FAIL', 'SUCCESS'])->nullable();
 
+                if (config('mesomb.uses_uuid')) {
+                    $table->nullableUuidMorphs('depositable');
+                } else {
+                    $table->nullableMorphs('depositable');
+                }
+
                 $table->timestamps();
             }
         );
@@ -74,6 +79,31 @@ class CreateMesombTables extends Migration
                 $table->uuid('pk');
                 $table->string('status');
                 $table->float('amount');
+                $table->enum(
+                    'type',
+                    [
+                        'COLLECT',
+                        'REFILL',
+                        'INIT',
+                        'WITHDRAWAL',
+                        'PAYMENT',
+                        'DEPOSIT',
+                        'TRANSFER',
+                        'SendMoney',
+                        'ReceiveMoney',
+                        'P2PTransfer',
+                        'AccountBalance',
+                        'CashIn', 'CashOut',
+                        'ENEOBill',
+                        'FloatTransfer',
+                        'SellAirtime',
+                        'PayWithCoupon',
+                        'PostpaidBill',
+                        'AirtimePurchase',
+                        'ENEOPrepaid',
+                        'CDEBill'
+                    ]
+                );
                 $table->string('service');
                 $table->text('message')->nullable();
                 $table->text('b_party')->nullable();

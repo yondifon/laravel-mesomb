@@ -49,16 +49,12 @@ return [
     'services' => ['MTN', 'ORANGE'],
 
     /**
-     * Payments
+     * Set to True if your application uses uuid instead auto-incrmenting ids
+     *
+     * @var bool
      */
-    'payable' => [
-        /**
-         * Set this true if you're using uuid insteads of auto-increments  for id
-         *
-         * @var bool
-         */
-        'uuid' => false
-    ],
+    'uses_uuid' => true,
+
 
     /**
      * Failed Payments
@@ -72,5 +68,12 @@ return [
          * @var bool
          */
         'check' => false
-    ]
+    ],
+
+    /**
+     * Application Cache Key
+     *
+     * Used to store the application Status
+     */
+    'application_cache_key' => 'mesomb_application_status'
 ];

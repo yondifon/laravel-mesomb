@@ -75,7 +75,7 @@ class Payment
     }
     
     /**
-     * SAve Payment before request
+     * Save Payment before request
      *
      * @param array  $data
      *
@@ -114,7 +114,7 @@ class Payment
     /**
      * Send Payment Request
      *
-     * @return [type] [description]
+     * @return \Malico\MeSomb\Model\Payment
      */
     public function pay()
     {
@@ -125,13 +125,13 @@ class Payment
             'X-MeSomb-RequestId' => $this->request_id
         ];
 
-        $response = Http::withToken(config('mesomb.api_key'))
+        $response = Http::withToken(config('mesomb.api_key'), 'Token')
             ->withHeaders($headers)
             ->post($this->url, $data);
 
         if ($response->serverError()) {
             if (config('mesomb.failed_payments.check')) {
-                CheckFailedTransactions::dispatchNow($this->payment_model);
+                CheckFailedTransactions::dispatch($this->payment_model);
             }
             
             $response->throw();
@@ -159,7 +159,7 @@ class Payment
     /**
      * Record Response to DATABAase
      *
-     * @param  json $response
+     * @param array|json $response
      *
      * @return void
      */

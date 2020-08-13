@@ -29,7 +29,7 @@ class PaymentBuilder
         $this->owner = $owner;
         $this->payer = $payer;
         $this->amount = $amount;
-        $this->service = $service ;
+        $this->service = $service;
         $this->fees = $fees;
         $this->currency = $currency;
         $this->message  = $message;
@@ -43,7 +43,15 @@ class PaymentBuilder
      */
     public function pay()
     {
-        $payment = (new Payment($this->payer, $this->amount))->pay();
+        $payment = (new Payment(
+            $this->payer,
+            $this->amount,
+            $this->service,
+            $this->fees,
+            $this->currency,
+            $this->message,
+            $this->redirect
+        ))->pay();
 
         $this->owner->payments()->save($payment);
 

@@ -53,7 +53,7 @@ return [
      *
      * @var bool
      */
-    'uses_uuid' => true,
+    'uses_uuid' => false,
 
 
     /**

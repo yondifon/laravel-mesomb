@@ -128,9 +128,11 @@ class Deposit
 
         $this->deposit_model->update($data);
 
-        $transaction = Arr::get($response, 'transaction');
-
-        $this->recordTransaction($transaction);
+        if (Arr::has($response, 'transaction')) {
+            $transaction = Arr::get($response, 'transaction');
+            
+            $this->recordTransaction($transaction);
+        }
     }
 
     /**

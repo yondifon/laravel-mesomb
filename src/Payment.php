@@ -42,8 +42,8 @@ class Payment
         $this->payer = trim($payer, '+');
         $this->amount = $amount;
         $this->service = $service ?? $this->getPayerService();
-        $this->fees = $fees;
         $this->currency = $currency;
+        $this->fees = $fees;
         $this->message  = $message;
         $this->redirect = $redirect;
     }
@@ -169,8 +169,10 @@ class Payment
 
         $this->payment_model->update($data);
 
-        $transaction = Arr::get($response, 'transaction');
-
-        $this->recordTransaction($transaction);
+        if (Arr::has($response, 'transaction')) {
+            $transaction = Arr::get($response, 'transaction');
+            
+            $this->recordTransaction($transaction);
+        }
     }
 }

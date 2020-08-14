@@ -47,8 +47,8 @@ class PaymentBuilder
             $this->payer,
             $this->amount,
             $this->service,
-            $this->fees,
             $this->currency,
+            $this->fees,
             $this->message,
             $this->redirect
         ))->pay();

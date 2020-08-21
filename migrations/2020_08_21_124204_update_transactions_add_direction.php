@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class UpdateMesombTransactions extends Migration
+class UpdateTransactionsAddDirection extends Migration
 {
     /**
      * Run the migrations.
@@ -16,7 +16,7 @@ class UpdateMesombTransactions extends Migration
         Schema::table(
             'mesomb_transactions',
             function (Blueprint $table) {
-                $table->string('reference')->nullable();
+                $table->enum('direction', [0, -1, 1 ])->nullable();
             }
         );
     }
@@ -31,7 +31,7 @@ class UpdateMesombTransactions extends Migration
         Schema::table(
             'mesomb_transactions',
             function (Blueprint $table) {
-                $table->dropColumn('reference');
+                $table->dropColumn('direction');
             }
         );
     }

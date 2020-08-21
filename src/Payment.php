@@ -6,13 +6,14 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Http;
 use Malico\MeSomb\Helper\PaymentData;
+use Malico\MeSomb\Helper\RecordTransaction;
 use Malico\MeSomb\Jobs\CheckFailedTransactions;
 use Malico\MeSomb\Model\Payment as PaymentModel;
 use Malico\MobileCM\Network;
 
 class Payment
 {
-    use PaymentData;
+    use PaymentData, RecordTransaction;
 
     /**
      * MeSomb Payment Payment URL
@@ -143,20 +144,6 @@ class Payment
     }
 
     /**
-     * Record Payment Transaction
-     *
-     * @param  array $data
-     *
-     * @return void
-     */
-    protected function recordTransaction($data) : void
-    {
-        $data['ts'] = Carbon::parse($data['ts']);
-
-        $this->payment_model->transaction()->updateOrCreate($data);
-    }
-
-    /**
      * Record Response to DATABAase
      *
      * @param array|json $response
@@ -169,10 +156,6 @@ class Payment
 
         $this->payment_model->update($data);
 
-        if (Arr::has($response, 'transaction')) {
-            $transaction = Arr::get($response, 'transaction');
-            
-            $this->recordTransaction($transaction);
-        }
+        $this->recordTransaction($response, $this->payment_model);
     }
 }

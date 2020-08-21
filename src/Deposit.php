@@ -4,13 +4,14 @@ namespace Malico\MeSomb;
 
 use Illuminate\Support\Arr;
 use Malico\MobileCM\Network;
-use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Http;
+use Malico\MeSomb\Helper\RecordTransaction;
 use Malico\MeSomb\Jobs\CheckFailedTransactions;
 use Malico\MeSomb\Model\Deposit as DepositModel;
 
 class Deposit
 {
+    use RecordTransaction;
     /**
      * Deposit URL
      *
@@ -104,20 +105,6 @@ class Deposit
     }
 
     /**
-     * Record Response to DATABAase
-     *
-     * @param array|json $response
-     *
-     * @return void
-     */
-    protected function recordTransaction($data) : void
-    {
-        $data['ts'] = Carbon::parse($data['ts']);
-
-        $this->deposit_model->transaction()->updateOrCreate($data);
-    }
-
-    /**
      * Record Deposit
      *
      * @return void
@@ -128,11 +115,7 @@ class Deposit
 
         $this->deposit_model->update($data);
 
-        if (Arr::has($response, 'transaction')) {
-            $transaction = Arr::get($response, 'transaction');
-            
-            $this->recordTransaction($transaction);
-        }
+        $this->recordTransaction($response, $this->deposit_model);
     }
 
     /**

@@ -126,7 +126,7 @@ class Payment
             'X-MeSomb-RequestId' => $this->request_id
         ];
 
-        $response = Http::withToken(config('mesomb.api_key'), 'Token')
+        $response = Http::withToken(config('mesomb.api_key'))
             ->withHeaders($headers)
             ->post($this->url, $data);
 

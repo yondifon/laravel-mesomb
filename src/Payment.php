@@ -122,7 +122,7 @@ class Payment
         $data = $this->prepareData();
 
         $headers = [
-            'X-MeSomb-Application' => config('mesomb.key'),
+            'X-MeSomb-Application' => config('mesomb.api_key'),
             'X-MeSomb-RequestId' => $this->request_id
         ];
 

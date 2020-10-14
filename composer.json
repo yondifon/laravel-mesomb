@@ -13,7 +13,7 @@
         "guzzlehttp/guzzle": "^6.5",
         "illuminate/support": "~5.7|^6.0|^7.0",
         "illuminate/database": "~5.7|^6.0|^7.0",
-        "malico/mobile-cm-php": "^1.1"
+        "malico/mobile-cm-php": "dev-master"
     },
     "autoload": {
         "psr-4": {

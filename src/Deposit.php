@@ -53,7 +53,7 @@ class Deposit
                 config('mesomb.version') .
                 "/applications/" .
                 config('mesomb.key') .
-                "/deposit";
+                "/deposit/";
     }
 
     /**

@@ -11,7 +11,7 @@ API Features and their implementations [https://mesomb.hachther.com/en/api/schem
 | Payment              | &#9745; |
 | Transaction Status   | &#9745; |
 | Application Status   | &#9745; |
-| Deposits             | &#9744; |
+| Deposits             | &#9745; |
 | Test                 | &#9744; |
 | Better Documentation | &#9744; |
 

@@ -16,7 +16,7 @@ class UpdateTransactionsAddDirection extends Migration
         Schema::table(
             'mesomb_transactions',
             function (Blueprint $table) {
-                $table->enum('direction', [0, -1, 1 ])->nullable();
+                $table->enum('direction', ["0", "-1", "1"])->nullable();
             }
         );
     }

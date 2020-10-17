@@ -46,7 +46,7 @@ trait RecordTransaction
         $data = $this->extractSavableTransactionDetails($data);
 
         $data['ts'] = Carbon::parse($data['ts']);
-        $data['direction'] = "".$data['direction']."";
+        $data['direction'] = strval($data['direction']);
 
         $model->transaction()->updateOrCreate($data);
     }

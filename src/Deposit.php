@@ -134,6 +134,7 @@ class Deposit
             if (config('mesomb.failed_payments.check')) {
                 CheckFailedTransactions::dispatchNow($this->deposit_model);
             }
+           return $this->deposit_model;
         }
         
         $response->throw();

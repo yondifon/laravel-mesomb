@@ -10,7 +10,7 @@
     ],
     "require": {
         "php": "^7.2.5",
-        "guzzlehttp/guzzle": "^6.5",
+        "guzzlehttp/guzzle": "^6.5|^7.0",
         "illuminate/support": "~5.7|^6.0|^7.0|^8.0",
         "illuminate/database": "~5.7|^6.0|^7.0|^8.0",
         "malico/mobile-cm-php": "^1.2"

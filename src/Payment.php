@@ -109,7 +109,9 @@ class Payment
             "redirect"=> $this->redirect
         ];
 
-        return array_filter($this->savePayment($data));
+        return array_filter($this->savePayment($data), function ($val) {
+            return !is_null($val);
+        });
     }
 
     /**

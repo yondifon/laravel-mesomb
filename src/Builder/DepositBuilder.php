@@ -8,26 +8,25 @@ use Malico\MeSomb\Helper\DepositData;
 class DepositBuilder
 {
     use DepositData;
-        
+
     /**
-     * Payment Owner Model
+     * Payment Owner Model.
      *
      * @var Illuminate\Database\Eloquent\Model
      */
     protected $owner;
-    
-    
+
     public function __construct($owner, $receiver, $amount, $service = null)
     {
         $this->owner = $owner;
-        
+
         $this->receiver = $receiver;
         $this->amount = $amount;
         $this->service = $service;
     }
 
     /**
-     * Make Deposit
+     * Make Deposit.
      *
      * @return \Malico\MeSomb\Model\Deposit
      */

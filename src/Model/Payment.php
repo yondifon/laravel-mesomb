@@ -17,7 +17,7 @@ class Payment extends Model
      * @var string
      */
     protected $keyType = 'string';
-    
+
     /**
      * Indicates if the IDs are auto-incrementing.
      *
@@ -26,21 +26,21 @@ class Payment extends Model
     public $incrementing = false;
 
     /**
-     * Payment Model Table
+     * Payment Model Table.
      *
      * @var string
      */
     protected $table = 'mesomb_payments';
 
     /**
-     * Guarded Properties
+     * Guarded Properties.
      *
      * @var array
      */
     protected $guarded = ['id'];
-    
+
     /**
-     * Payable Morph
+     * Payable Morph.
      *
      * @return Illuminate\Database\Eloquent\Relations\MorphTo
      */
@@ -50,16 +50,15 @@ class Payment extends Model
     }
 
     /**
-     * Refund Payment
+     * Refund Payment.
      *
      * @return null|\Malico\MeSomb\Model\Deposit
      */
     public function refund()
     {
-        if ($this->success &&  $this->transaction->successful()) {
+        if ($this->success && $this->transaction->successful()) {
             return $this->deposit($this->payer, $this->transaction->amount)->pay();
         }
 
-        return null;
     }
 }

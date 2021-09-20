@@ -5,7 +5,7 @@ namespace Malico\MeSomb\Helper;
 trait HasTransactions
 {
     /**
-     * Deposit|Payment Transaction
+     * Deposit|Payment Transaction.
      *
      * @return Illuminate\Database\Eloquent\Relations\MorphOne
      */
@@ -15,14 +15,14 @@ trait HasTransactions
     }
 
     /**
-     * Succesful Transactoin
+     * Succesful Transactoin.
      *
      * @return void
      */
     public function toggleToSuccess()
     {
         $this->update(['success' => true]);
-        
+
         $this->save();
     }
 }

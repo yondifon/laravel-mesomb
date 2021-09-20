@@ -3,18 +3,18 @@
 namespace Malico\MeSomb\Jobs;
 
 use Illuminate\Bus\Queueable;
-use Malico\MeSomb\Transaction;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Queue\SerializesModels;
+use Malico\MeSomb\Transaction;
 
 class CheckFailedTransactions implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     /**
-     * Transaction Model
+     * Transaction Model.
      *
      * @var \Malico\MeSomb\Model\Payment | \Malico\MeSomb\Model\Deposit
      */

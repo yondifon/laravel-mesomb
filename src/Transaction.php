@@ -9,26 +9,26 @@ use Malico\Momo\Model\Transaction;
 class Transaction
 {
     /**
-     * Generate Checking URL
+     * Generate Checking URL.
      *
      * @return string
      */
     public static function getURL(string $id) : string
     {
-        return "https://mesomb.hachther.com/api/" .
+        return 'https://mesomb.hachther.com/api/' .
             config('mesomb.version') .
-            "/applications/" .
+            '/applications/' .
             config('mesomb.key') .
-            "/transactions/".
+            '/transactions/' .
             $id;
     }
-    
+
     /**
-     * Check Transaction sTatus
+     * Check Transaction sTatus.
      *
      * @param \Malico\MeSomb\Model\Payment | \Malico\MeSomb\Model\Deposit $model
      *
-     * @return \Malico\MeSomb\Model\Transaction|Null
+     * @return \Malico\MeSomb\Model\Transaction|null
      */
     public static function checkStatus($model)
     {
@@ -42,7 +42,7 @@ class Transaction
             ->get(self::getURL($id));
 
         $response->throw();
-            
+
         if ($response->successful()) {
             $data = $response->json();
 
@@ -50,13 +50,12 @@ class Transaction
 
             if (! is_string($model)) {
                 $model->transaction()->updateOrCreate($data);
-                
+
                 return $model->transaction;
             } else {
-                return Transaction::updateOrCreate($data);
+                return self::updateOrCreate($data);
             }
         }
 
-        return null;
     }
 }

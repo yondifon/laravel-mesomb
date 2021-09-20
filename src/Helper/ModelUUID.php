@@ -7,7 +7,7 @@ use Illuminate\Support\Str;
 trait ModelUUID
 {
     /**
-     * Set UUID for newly created Models
+     * Set UUID for newly created Models.
      *
      * @return void
      */

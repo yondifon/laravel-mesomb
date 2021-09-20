@@ -7,7 +7,7 @@ use Malico\MeSomb\Builder\DepositBuilder;
 trait HasDeposits
 {
     /**
-     * Model Deposits
+     * Model Deposits.
      *
      * @return Illuminate\Database\Eloquent\Relations\MorphOne
      */
@@ -17,7 +17,7 @@ trait HasDeposits
     }
 
     /**
-     * Make Deposit
+     * Make Deposit.
      *
      * @param string|int $receiver
      * @param int|float $amount

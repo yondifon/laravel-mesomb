@@ -3,31 +3,31 @@
 namespace Malico\MeSomb;
 
 use Illuminate\Support\Arr;
-use Malico\MobileCM\Network;
 use Illuminate\Support\Facades\Http;
 use Malico\MeSomb\Helper\RecordTransaction;
 use Malico\MeSomb\Jobs\CheckFailedTransactions;
 use Malico\MeSomb\Model\Deposit as DepositModel;
+use Malico\MobileCM\Network;
 
 class Deposit
 {
     use RecordTransaction;
     /**
-     * Deposit URL
+     * Deposit URL.
      *
      * @var string
      */
     protected $url;
 
     /**
-     * Reference to add in the payment
+     * Reference to add in the payment.
      *
      * @var string
      */
     protected $pin;
 
     /**
-     * Deposit Model
+     * Deposit Model.
      *
      * @var Malico\MeSomb\Deposit
      */
@@ -43,21 +43,21 @@ class Deposit
     }
 
     /**
-     * Generate Deposit URL
+     * Generate Deposit URL.
      *
      * @return void
      */
     protected function generateURL() : void
     {
-        $this->url = "https://mesomb.hachther.com/api/" .
+        $this->url = 'https://mesomb.hachther.com/api/' .
                 config('mesomb.version') .
-                "/applications/" .
+                '/applications/' .
                 config('mesomb.key') .
-                "/deposit/";
+                '/deposit/';
     }
 
     /**
-     * Determine receiver's Network
+     * Determine receiver's Network.
      *
      *  @return string
      */
@@ -73,7 +73,7 @@ class Deposit
     }
 
     /**
-     * Save Deposit bef[return description]ore request
+     * Save Deposit bef[return description]ore request.
      *
      * @param array  $data
      *
@@ -83,29 +83,29 @@ class Deposit
     {
         $this->deposit_model = DepositModel::create($data);
 
-        $data ["pin"] = config('mesomb.pin');
+        $data['pin'] = config('mesomb.pin');
 
         return $data;
     }
 
     /**
-     * Prep Request Data
+     * Prep Request Data.
      *
      * @return array
      */
     protected function prepareData() : array
     {
-        $data =  [
-            "service"=> $this->service,
-            "amount"=> $this->amount,
-            "receiver"=> trim($this->receiver, '+')
+        $data = [
+            'service' => $this->service,
+            'amount'  => $this->amount,
+            'receiver'=> trim($this->receiver, '+'),
         ];
 
         return array_filter($this->saveDeposit($data));
     }
 
     /**
-     * Record Deposit
+     * Record Deposit.
      *
      * @return void
      */
@@ -119,23 +119,23 @@ class Deposit
     }
 
     /**
-     * Make Deposit Request
+     * Make Deposit Request.
      *
      * @return \Malico\MeSomb\Model\Deposit
      */
     public function pay() : DepositModel
     {
         $data = $this->prepareData();
-        
+
         $response = Http::withToken(config('mesomb.api_key'), 'Token')
                     ->post($this->url, $data);
-            
+
         if ($response->serverError()) {
             if (config('mesomb.failed_payments.check')) {
                 CheckFailedTransactions::dispatchNow($this->deposit_model);
             }
         }
-        
+
         $response->throw();
 
         $this->recordDeposit($response->json());

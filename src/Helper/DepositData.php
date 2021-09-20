@@ -20,14 +20,14 @@ trait DepositData
 
     /**
      * Payment Service
-     * MTN | ORANGE
+     * MTN | ORANGE.
      *
      * @var string
      */
     protected $service;
-  
+
     /**
-     * Modify receiver
+     * Modify receiver.
      *
      * @param  string|int $value
      *
@@ -53,7 +53,7 @@ trait DepositData
     }
 
     /**
-     * Modify Amount
+     * Modify Amount.
      *
      * @param  string|int $value
      *
@@ -61,13 +61,13 @@ trait DepositData
      */
     public function amount($value)
     {
-        $this->amount  = $value;
+        $this->amount = $value;
 
         return $this;
     }
 
     /**
-     * Modify Service
+     * Modify Service.
      *
      * @param string $value
      *

@@ -7,7 +7,7 @@ use Malico\MeSomb\Builder\PaymentBuilder;
 trait HasPayments
 {
     /**
-     * Model Payment
+     * Model Payment.
      *
      * @return Illuminate\Database\Eloquent\Relations\MorphOne
      */
@@ -17,7 +17,7 @@ trait HasPayments
     }
 
     /**
-     * Make Payment
+     * Make Payment.
      *
      * @param string|int $payer
      * @param int|float $amount

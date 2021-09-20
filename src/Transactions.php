@@ -2,44 +2,43 @@
 
 namespace Malico\MeSomb;
 
-use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Http;
 
 class Transactions
 {
     /**
-     * Generate transactions url URL
+     * Generate transactions url URL.
      *
      * @return string
      */
     public static function getURL() : string
     {
-        return "https://mesomb.hachther.com/api/" .
+        return 'https://mesomb.hachther.com/api/' .
             config('mesomb.version') .
-            "/applications/" .
+            '/applications/' .
             config('mesomb.key') .
-            "/transactions/";
+            '/transactions/';
     }
+
     /**
-     * Get all Transactions
+     * Get all Transactions.
      *
-     * @param 
+     * @param
      *
-     * @return \Transactions|Null
+     * @return \Transactions|null
      */
     public static function getTransactions()
     {
-
         $response = Http::withToken(config('mesomb.api_key'), 'Token')
             ->get(self::getURL());
 
         $response->throw();
-            
+
         if ($response->successful()) {
             $data = $response->json();
+
             return $data;
         }
 
-        return null;
     }
 }

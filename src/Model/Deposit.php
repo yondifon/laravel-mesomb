@@ -16,31 +16,30 @@ class Deposit extends Model
      * @var string
      */
     protected $keyType = 'string';
-    
+
     /**
      * Indicates if the IDs are auto-incrementing.
      *
      * @var bool
      */
     public $incrementing = false;
-    
+
     /**
-     * Guarded Properties
+     * Guarded Properties.
      *
      * @var array
      */
     protected $guarded = ['id'];
-    
-    
+
     /**
-     * Transaction Model Table
+     * Transaction Model Table.
      *
      * @var string
      */
     protected $table = 'mesomb_deposits';
 
     /**
-     * Deposits Morph
+     * Deposits Morph.
      *
      * @return Illuminate\Database\Eloquent\Relations\MorphTo
      */

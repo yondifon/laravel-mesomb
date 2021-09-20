@@ -8,9 +8,9 @@ use Malico\MeSomb\Payment;
 class PaymentBuilder
 {
     use PaymentData;
-    
+
     /**
-     * Payment Owner Model
+     * Payment Owner Model.
      *
      * @var Illuminate\Database\Eloquent\Model
      */
@@ -32,12 +32,12 @@ class PaymentBuilder
         $this->service = $service;
         $this->fees = $fees;
         $this->currency = $currency;
-        $this->message  = $message;
+        $this->message = $message;
         $this->redirect = $redirect;
     }
 
     /**
-     * Make Model Payment
+     * Make Model Payment.
      *
      * @return Malico\MeSomb\Model\Payment
      */

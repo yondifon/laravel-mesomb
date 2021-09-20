@@ -19,21 +19,21 @@ trait PaymentData
 
     /**
      * Payment Service
-     * MTN | ORANGE
+     * MTN | ORANGE.
      *
      * @var string
      */
     protected $service;
 
     /**
-     * Reference to add in the payment
+     * Reference to add in the payment.
      *
      * @var string
      */
     protected $reference;
 
     /**
-     * If false then extra fees will be added to the amount deducted to the customer
+     * If false then extra fees will be added to the amount deducted to the customer.
      *
      * @var bool
      */
@@ -41,35 +41,35 @@ trait PaymentData
 
     /**
      * Trading Currency
-     * XAF | XOF
+     * XAF | XOF.
      *
      * @var string
      */
     protected $currency;
 
     /**
-     * Payment Description
+     * Payment Description.
      *
      * @var string
      */
     protected $message;
 
     /**
-     * Redirect
+     * Redirect.
      *
      * @var string
      */
     protected $redirect;
-    
+
     /**
-     * Request ID
+     * Request ID.
      *
      * @var string
      */
     protected $request_id;
-    
+
     /**
-     * Modify Payer
+     * Modify Payer.
      *
      * @param string|int $value
      *
@@ -95,7 +95,7 @@ trait PaymentData
     }
 
     /**
-     * Modify Amount
+     * Modify Amount.
      *
      * @param  string|int $value
      *
@@ -103,13 +103,13 @@ trait PaymentData
      */
     public function amount($value)
     {
-        $this->amount  = $value;
+        $this->amount = $value;
 
         return $this;
     }
 
     /**
-     * Modify Reference
+     * Modify Reference.
      *
      * @param  string $value
      *
@@ -123,7 +123,7 @@ trait PaymentData
     }
 
     /**
-     * Modify Message
+     * Modify Message.
      *
      * @param  string $value
      *
@@ -137,7 +137,7 @@ trait PaymentData
     }
 
     /**
-     * Modify Currency
+     * Modify Currency.
      *
      * @param  string $value
      *
@@ -151,7 +151,7 @@ trait PaymentData
     }
 
     /**
-     * Modify Service
+     * Modify Service.
      *
      * @param  string $value
      *
@@ -165,7 +165,7 @@ trait PaymentData
     }
 
     /**
-     * Modify Fees
+     * Modify Fees.
      *
      * @param  string $value
      *
@@ -179,7 +179,7 @@ trait PaymentData
     }
 
     /**
-     * Modify Request ID
+     * Modify Request ID.
      *
      * @param  string $value
      *

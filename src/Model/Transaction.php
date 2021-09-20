@@ -15,30 +15,30 @@ class Transaction extends Model
      * @var string
      */
     protected $keyType = 'string';
-    
+
     /**
      * Indicates if the IDs are auto-incrementing.
      *
      * @var bool
      */
     public $incrementing = false;
-    
+
     /**
-     * Guarded Properties
+     * Guarded Properties.
      *
      * @var array
      */
     protected $guarded = ['id'];
 
     /**
-     * Transaction Model Table
+     * Transaction Model Table.
      *
      * @var string
      */
     protected $table = 'mesomb_transactions';
 
     /**
-     * Model Morph
+     * Model Morph.
      *
      * @return Illuminate\Database\Eloquent\Relations\MorphTo
      */
@@ -48,12 +48,12 @@ class Transaction extends Model
     }
 
     /**
-     * Check if Transaction is Successful
+     * Check if Transaction is Successful.
      *
      * @return bool
      */
     public function successful()
     {
-        return $this->status  == 'SUCCESS' ? true : false;
+        return $this->status == 'SUCCESS' ? true : false;
     }
 }

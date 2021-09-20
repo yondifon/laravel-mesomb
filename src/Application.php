@@ -2,27 +2,27 @@
 
 namespace Malico\MeSomb;
 
-use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Http;
 
 class Application
 {
     /**
-     * Generate Deposit URL
+     * Generate Deposit URL.
      *
      * @return void
      */
     protected static function generateURL() : string
     {
-        return  "https://mesomb.hachther.com/api/" .
+        return  'https://mesomb.hachther.com/api/' .
                     config('mesomb.version') .
-                    "/applications/" .
+                    '/applications/' .
                     config('mesomb.key') .
-                    "/status";
+                    '/status';
     }
-    
+
     /**
-     * Get Cached Application Status | if null request fresh copy of Application Status
+     * Get Cached Application Status | if null request fresh copy of Application Status.
      *
      * @return array|json
      */
@@ -34,9 +34,9 @@ class Application
             return self::checkStatus();
         }
     }
-    
+
     /**
-     * Fetch Application Status
+     * Fetch Application Status.
      *
      * @return array|json
      */
@@ -49,7 +49,7 @@ class Application
             ->get(self::generateURL());
 
         $response->throw();
-            
+
         Cache::put(config('mesomb.application_cache_key'), $response->json());
 
         return $response->json();

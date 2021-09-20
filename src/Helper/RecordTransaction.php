@@ -19,11 +19,11 @@ trait RecordTransaction
         'external_id',
         'ts',
         'direction',
-        'reference'
+        'reference',
     ];
-    
+
     /**
-     * Extract on Fields saved in DB
+     * Extract on Fields saved in DB.
      *
      * @param array $data
      *
@@ -35,7 +35,7 @@ trait RecordTransaction
     }
 
     /**
-     * Save {Model} Transaction
+     * Save {Model} Transaction.
      *
      * @param array $data
      *
@@ -52,7 +52,7 @@ trait RecordTransaction
     }
 
     /**
-     * Save Transaction
+     * Save Transaction.
      *
      * @param   array  $response
      * @param   \Illuminate\Database\Eloquent\Model $model

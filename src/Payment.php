@@ -3,7 +3,6 @@
 namespace Malico\MeSomb;
 
 use Illuminate\Support\Arr;
-use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Http;
 use Malico\MeSomb\Helper\PaymentData;
 use Malico\MeSomb\Helper\RecordTransaction;
@@ -16,14 +15,14 @@ class Payment
     use PaymentData, RecordTransaction;
 
     /**
-     * MeSomb Payment Payment URL
+     * MeSomb Payment Payment URL.
      *
      * @var string
      */
     protected $url;
 
     /**
-     * Payment Model
+     * Payment Model.
      *
      * @var Malico\MeSomb\Model\Payment | null
      */
@@ -45,22 +44,22 @@ class Payment
         $this->service = $service ?? $this->getPayerService();
         $this->currency = $currency;
         $this->fees = $fees;
-        $this->message  = $message;
+        $this->message = $message;
         $this->redirect = $redirect;
     }
 
     /**
-     * Generate Payment URL
+     * Generate Payment URL.
      *
      * @return void
      */
     protected function generateURL() : void
     {
-        $this->url = "https://mesomb.hachther.com/api/" . config('mesomb.version') . "/payment/online/";
+        $this->url = 'https://mesomb.hachther.com/api/' . config('mesomb.version') . '/payment/online/';
     }
 
     /**
-     * Determine payer's Network
+     * Determine payer's Network.
      *
      * @return string
      */
@@ -74,9 +73,9 @@ class Payment
             return config('mesomb.services')[0];
         }
     }
-    
+
     /**
-     * Save Payment before request
+     * Save Payment before request.
      *
      * @param array  $data
      *
@@ -86,36 +85,36 @@ class Payment
     {
         $this->payment_model = PaymentModel::create($data);
 
-        $data["reference"] = $this->reference ?? $this->payment_model->id;
+        $data['reference'] = $this->reference ?? $this->payment_model->id;
         $this->request_id = $this->request_id ?? $this->payment_model->id;
 
         return $data;
     }
 
     /**
-     * Prep Request Data
+     * Prep Request Data.
      *
      * @return array
      */
     protected function prepareData() : array
     {
-        $data =  [
-            "service"=> $this->service,
-            "amount"=> $this->amount,
-            "payer"=> $this->payer,
-            "fees"=> $this->fees,
-            "currency"=> $this->currency,
-            "message"=> $this->message,
-            "redirect"=> $this->redirect
+        $data = [
+            'service' => $this->service,
+            'amount'  => $this->amount,
+            'payer'   => $this->payer,
+            'fees'    => $this->fees,
+            'currency'=> $this->currency,
+            'message' => $this->message,
+            'redirect'=> $this->redirect,
         ];
 
         return array_filter($this->savePayment($data), function ($val) {
-            return !is_null($val);
+            return ! is_null($val);
         });
     }
 
     /**
-     * Send Payment Request
+     * Send Payment Request.
      *
      * @return \Malico\MeSomb\Model\Payment
      */
@@ -125,7 +124,7 @@ class Payment
 
         $headers = [
             'X-MeSomb-Application' => config('mesomb.key'),
-            'X-MeSomb-RequestId' => $this->request_id
+            'X-MeSomb-RequestId'   => $this->request_id,
         ];
 
         $response = Http::withToken(config('mesomb.api_key'), 'Token')
@@ -136,7 +135,7 @@ class Payment
             if (config('mesomb.failed_payments.check')) {
                 CheckFailedTransactions::dispatch($this->payment_model);
             }
-            
+
             $response->throw();
         }
 
@@ -146,7 +145,7 @@ class Payment
     }
 
     /**
-     * Record Response to DATABAase
+     * Record Response to DATABAase.
      *
      * @param array|json $response
      *

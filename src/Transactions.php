@@ -39,6 +39,5 @@ class Transactions
 
             return $data;
         }
-
     }
 }

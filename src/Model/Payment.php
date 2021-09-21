@@ -59,6 +59,5 @@ class Payment extends Model
         if ($this->success && $this->transaction->successful()) {
             return $this->deposit($this->payer, $this->transaction->amount)->pay();
         }
-
     }
 }

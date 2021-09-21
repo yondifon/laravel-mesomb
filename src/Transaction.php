@@ -56,6 +56,5 @@ class Transaction
                 return self::updateOrCreate($data);
             }
         }
-
     }
 }

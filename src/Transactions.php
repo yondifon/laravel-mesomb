@@ -8,16 +8,14 @@ class Transactions
 {
     /**
      * Generate transactions url URL.
-     *
-     * @return string
      */
-    public static function getURL() : string
+    public static function getURL(): string
     {
-        return 'https://mesomb.hachther.com/api/' .
-            config('mesomb.version') .
-            '/applications/' .
-            config('mesomb.key') .
-            '/transactions/';
+        return 'https://mesomb.hachther.com/api/'
+            . config('mesomb.version')
+            . '/applications/'
+            . config('mesomb.key')
+            . '/transactions/';
     }
 
     /**
@@ -25,7 +23,7 @@ class Transactions
      *
      * @param
      *
-     * @return \Transactions|null
+     * @return null|\Transactions
      */
     public static function getTransactions()
     {
@@ -35,10 +33,7 @@ class Transactions
         $response->throw();
 
         if ($response->successful()) {
-            $data = $response->json();
-
-            return $data;
+            return $response->json();
         }
-
     }
 }

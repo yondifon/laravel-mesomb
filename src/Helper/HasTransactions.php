@@ -2,24 +2,22 @@
 
 namespace Malico\MeSomb\Helper;
 
+use Illuminate\Database\Eloquent\Relations\MorphOne;
+
 trait HasTransactions
 {
     /**
      * Deposit|Payment Transaction.
-     *
-     * @return Illuminate\Database\Eloquent\Relations\MorphOne
      */
-    public function transaction()
+    public function transaction(): MorphOne
     {
         return $this->morphOne('Malico\MeSomb\Model\Transaction', 'transacable');
     }
 
     /**
      * Succesful Transactoin.
-     *
-     * @return void
      */
-    public function toggleToSuccess()
+    public function toggleToSuccess(): void
     {
         $this->update(['success' => true]);
 

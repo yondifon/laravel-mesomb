@@ -16,7 +16,7 @@ class CheckFailedTransactions implements ShouldQueue
     /**
      * Transaction Model.
      *
-     * @var \Malico\MeSomb\Model\Payment | \Malico\MeSomb\Model\Deposit
+     * @var \Malico\MeSomb\Model\Deposit|\Malico\MeSomb\Model\Payment
      */
     protected $model;
 

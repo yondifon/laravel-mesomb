@@ -6,13 +6,12 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Malico\MeSomb\MeSombServiceProvider;
 use Orchestra\Testbench\TestCase as TestbenchTestCase;
 
-class TestCase extends TestbenchTestCase
+abstract class TestCase extends TestbenchTestCase
 {
     use RefreshDatabase;
 
     /**
      * Setup the test environment.
-     * @return void
      */
     protected function setUp(): void
     {
@@ -22,7 +21,7 @@ class TestCase extends TestbenchTestCase
     /**
      * Get package providers.
      *
-     * @param  \Illuminate\Foundation\Application  $app
+     * @param \Illuminate\Foundation\Application $app
      *
      * @return array
      */

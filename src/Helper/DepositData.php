@@ -7,14 +7,14 @@ trait DepositData
     /**
      * Amount to be Paid for Service.
      *
-     * @var int | string
+     * @var int|string
      */
     protected $amount;
 
     /**
      * Users Telephone Number.
      *
-     * @var int | string
+     * @var int|string
      */
     protected $receiver;
 
@@ -29,7 +29,7 @@ trait DepositData
     /**
      * Modify receiver.
      *
-     * @param  string|int $value
+     * @param int|string $value
      *
      * @return Malico\MeSomb\Payment
      */
@@ -55,7 +55,7 @@ trait DepositData
     /**
      * Modify Amount.
      *
-     * @param  string|int $value
+     * @param int|string $value
      *
      * @return Malico\MeSomb\Payment
      */

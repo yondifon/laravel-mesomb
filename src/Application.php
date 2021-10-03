@@ -12,13 +12,13 @@ class Application
      *
      * @return void
      */
-    protected static function generateURL() : string
+    protected static function generateURL(): string
     {
-        return  'https://mesomb.hachther.com/api/' .
-                    config('mesomb.version') .
-                    '/applications/' .
-                    config('mesomb.key') .
-                    '/status';
+        return 'https://mesomb.hachther.com/api/'
+                    . config('mesomb.version')
+                    . '/applications/'
+                    . config('mesomb.key')
+                    . '/status';
     }
 
     /**

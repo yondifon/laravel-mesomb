@@ -24,12 +24,8 @@ trait RecordTransaction
 
     /**
      * Extract on Fields saved in DB.
-     *
-     * @param array $data
-     *
-     * @return array
      */
-    protected function extractSavableTransactionDetails(array $data) : array
+    protected function extractSavableTransactionDetails(array $data): array
     {
         return Arr::only($data, $this->transaction_fields);
     }
@@ -38,15 +34,13 @@ trait RecordTransaction
      * Save {Model} Transaction.
      *
      * @param array $data
-     *
-     * @return void
      */
-    protected function saveTransaction($data, $model) : void
+    protected function saveTransaction($data, $model): void
     {
         $data = $this->extractSavableTransactionDetails($data);
 
         $data['ts'] = Carbon::parse($data['ts']);
-        $data['direction'] = strval($data['direction']);
+        $data['direction'] = (string) ($data['direction']);
 
         $model->transaction()->updateOrCreate($data);
     }
@@ -54,12 +48,9 @@ trait RecordTransaction
     /**
      * Save Transaction.
      *
-     * @param   array  $response
-     * @param   \Illuminate\Database\Eloquent\Model $model
-     *
-     * @return void
+     * @param \Illuminate\Database\Eloquent\Model $model
      */
-    protected function recordTransaction(array $response, $model) : void
+    protected function recordTransaction(array $response, $model): void
     {
         if (Arr::has($response, 'transaction')) {
             $transaction = Arr::get($response, 'transaction');

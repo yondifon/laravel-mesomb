@@ -8,10 +8,8 @@ trait ModelUUID
 {
     /**
      * Set UUID for newly created Models.
-     *
-     * @return void
      */
-    protected static function boot()
+    protected static function boot(): void
     {
         parent::boot();
 

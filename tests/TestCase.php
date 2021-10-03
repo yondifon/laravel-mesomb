@@ -6,7 +6,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Malico\MeSomb\MeSombServiceProvider;
 use Orchestra\Testbench\TestCase as TestbenchTestCase;
 
-class TestCase extends TestbenchTestCase
+abstract class TestCase extends TestbenchTestCase
 {
     use RefreshDatabase;
 

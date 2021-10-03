@@ -7,13 +7,14 @@ trait PaymentData
     /**
      * Amount to be Paid for Service.
      *
-     * @var int | string
+     * @var int|string
      */
     protected $amount;
+
     /**
      * Users Telephone Number.
      *
-     * @var int | string
+     * @var int|string
      */
     protected $payer;
 
@@ -71,7 +72,7 @@ trait PaymentData
     /**
      * Modify Payer.
      *
-     * @param string|int $value
+     * @param int|string $value
      *
      * @return Malico\MeSomb\Payment
      */
@@ -97,7 +98,7 @@ trait PaymentData
     /**
      * Modify Amount.
      *
-     * @param  string|int $value
+     * @param int|string $value
      *
      * @return Malico\MeSomb\Payment
      */
@@ -111,7 +112,7 @@ trait PaymentData
     /**
      * Modify Reference.
      *
-     * @param  string $value
+     * @param string $value
      *
      * @return Malico\MeSomb\Payment
      */
@@ -125,7 +126,7 @@ trait PaymentData
     /**
      * Modify Message.
      *
-     * @param  string $value
+     * @param string $value
      *
      * @return Malico\MeSomb\Payment
      */
@@ -139,7 +140,7 @@ trait PaymentData
     /**
      * Modify Currency.
      *
-     * @param  string $value
+     * @param string $value
      *
      * @return Malico\MeSomb\Payment
      */
@@ -153,7 +154,7 @@ trait PaymentData
     /**
      * Modify Service.
      *
-     * @param  string $value
+     * @param string $value
      *
      * @return Malico\MeSomb\Payment
      */
@@ -167,7 +168,7 @@ trait PaymentData
     /**
      * Modify Fees.
      *
-     * @param  string $value
+     * @param string $value
      *
      * @return Malico\MeSomb\Payment
      */
@@ -181,7 +182,7 @@ trait PaymentData
     /**
      * Modify Request ID.
      *
-     * @param  string $value
+     * @param string $value
      *
      * @return Malico\MeSomb\Payment
      */

@@ -4,14 +4,15 @@ namespace Malico\MeSomb;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Http;
+use Malico\MeSomb\Helper\HandleExceptions;
 use Malico\MeSomb\Helper\RecordTransaction;
-use Malico\MeSomb\Jobs\CheckFailedTransactions;
 use Malico\MeSomb\Model\Deposit as DepositModel;
 use Malico\MobileCM\Network;
 
 class Deposit
 {
-    use RecordTransaction;
+    use HandleExceptions, RecordTransaction;
+
     /**
      * Deposit URL.
      *
@@ -44,24 +45,19 @@ class Deposit
 
     /**
      * Generate Deposit URL.
-     *
-     * @return void
      */
-    protected function generateURL() : void
+    protected function generateURL(): void
     {
-        $this->url = 'https://mesomb.hachther.com/api/' .
-                config('mesomb.version') .
-                '/applications/' .
-                config('mesomb.key') .
-                '/deposit/';
+        $version = config('mesomb.version');
+        $key = config('mesomb.key');
+
+        $this->url = "https://mesomb.hachther.com/api/{$version}/applications/{$key}/deposit/";
     }
 
     /**
      * Determine receiver's Network.
-     *
-     *  @return string
      */
-    protected function getReceiverService() : string
+    protected function getReceiverService(): string
     {
         if (Network::isOrange($this->receiver)) {
             return 'ORANGE';
@@ -75,11 +71,9 @@ class Deposit
     /**
      * Save Deposit bef[return description]ore request.
      *
-     * @param array  $data
-     *
-     * @return array
+     * @param array $data
      */
-    protected function saveDeposit($data) : array
+    protected function saveDeposit($data): array
     {
         $this->deposit_model = DepositModel::create($data);
 
@@ -90,10 +84,8 @@ class Deposit
 
     /**
      * Prep Request Data.
-     *
-     * @return array
      */
-    protected function prepareData() : array
+    protected function prepareData(): array
     {
         $data = [
             'service' => $this->service,
@@ -120,25 +112,19 @@ class Deposit
 
     /**
      * Make Deposit Request.
-     *
-     * @return \Malico\MeSomb\Model\Deposit
      */
-    public function pay() : DepositModel
+    public function pay(): DepositModel
     {
         $data = $this->prepareData();
 
         $response = Http::withToken(config('mesomb.api_key'), 'Token')
-                    ->post($this->url, $data);
-
-        if ($response->serverError()) {
-            if (config('mesomb.failed_payments.check')) {
-                CheckFailedTransactions::dispatchNow($this->deposit_model);
-            }
-        }
-
-        $response->throw();
+            ->post($this->url, $data);
 
         $this->recordDeposit($response->json());
+
+        if ($response->failed()) {
+            $this->handleException($response);
+        }
 
         return $this->deposit_model;
     }

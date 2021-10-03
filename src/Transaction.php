@@ -4,38 +4,38 @@ namespace Malico\MeSomb;
 
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Http;
-use Malico\Momo\Model\Transaction;
+use Malico\MeSomb\Model\Transaction as ModelTransaction;
 
 class Transaction
 {
     /**
      * Generate Checking URL.
-     *
-     * @return string
      */
-    public static function getURL(string $id) : string
+    public static function getURL(string $id): string
     {
-        return 'https://mesomb.hachther.com/api/' .
-            config('mesomb.version') .
-            '/applications/' .
-            config('mesomb.key') .
-            '/transactions/' .
-            $id;
+        $config = config('mesomb.version');
+        $key = config('mesomb.key');
+
+        return "https://mesomb.hachther.com/api/{$config}/applications/{$key}/transactions/{$id}";
     }
 
     /**
      * Check Transaction sTatus.
      *
-     * @param \Malico\MeSomb\Model\Payment | \Malico\MeSomb\Model\Deposit $model
+     * @param \Malico\MeSomb\Model\Deposit|\Malico\MeSomb\Model\Payment $model
      *
-     * @return \Malico\MeSomb\Model\Transaction|null
+     * @return null|\Malico\MeSomb\Model\Transaction
      */
     public static function checkStatus($model)
     {
         if (is_string($model)) {
             $id = $model;
-        } else {
+        } elseif ($model->transaction) {
             $id = $model->transaction->pk;
+        }
+
+        if (! $id) {
+            return;
         }
 
         $response = Http::withToken(config('mesomb.api_key'), 'Token')
@@ -53,9 +53,8 @@ class Transaction
 
                 return $model->transaction;
             } else {
-                return self::updateOrCreate($data);
+                return ModelTransaction::updateOrCreate($data);
             }
         }
-
     }
 }

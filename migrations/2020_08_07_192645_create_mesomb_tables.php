@@ -41,11 +41,11 @@ class CreateMesombTables extends Migration
                 } else {
                     $table->nullableMorphs('payable');
                 }
-                
+
                 $table->timestamps();
             }
         );
-        
+
         Schema::create(
             'mesomb_deposits',
             function (Blueprint $table) {
@@ -101,7 +101,7 @@ class CreateMesombTables extends Migration
                         'PostpaidBill',
                         'AirtimePurchase',
                         'ENEOPrepaid',
-                        'CDEBill'
+                        'CDEBill',
                     ]
                 );
                 $table->string('service');

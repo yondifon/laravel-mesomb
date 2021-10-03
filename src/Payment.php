@@ -4,15 +4,15 @@ namespace Malico\MeSomb;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Http;
+use Malico\MeSomb\Helper\HandleExceptions;
 use Malico\MeSomb\Helper\PaymentData;
 use Malico\MeSomb\Helper\RecordTransaction;
-use Malico\MeSomb\Jobs\CheckFailedTransactions;
 use Malico\MeSomb\Model\Payment as PaymentModel;
 use Malico\MobileCM\Network;
 
 class Payment
 {
-    use PaymentData, RecordTransaction;
+    use HandleExceptions, PaymentData, RecordTransaction;
 
     /**
      * MeSomb Payment Payment URL.
@@ -24,7 +24,7 @@ class Payment
     /**
      * Payment Model.
      *
-     * @var Malico\MeSomb\Model\Payment | null
+     * @var null|Malico\MeSomb\Model\Payment
      */
     protected $payment_model;
 
@@ -50,20 +50,18 @@ class Payment
 
     /**
      * Generate Payment URL.
-     *
-     * @return void
      */
-    protected function generateURL() : void
+    protected function generateURL(): void
     {
-        $this->url = 'https://mesomb.hachther.com/api/' . config('mesomb.version') . '/payment/online/';
+        $version = config('mesomb.version');
+
+        $this->url = "https://mesomb.hachther.com/api/{$version}/payment/online/";
     }
 
     /**
      * Determine payer's Network.
-     *
-     * @return string
      */
-    protected function getPayerService() : string
+    protected function getPayerService(): string
     {
         if (Network::isOrange($this->payer)) {
             return 'ORANGE';
@@ -77,11 +75,9 @@ class Payment
     /**
      * Save Payment before request.
      *
-     * @param array  $data
-     *
-     * @return array
+     * @param array $data
      */
-    protected function savePayment($data) : array
+    protected function savePayment($data): array
     {
         $this->payment_model = PaymentModel::create($data);
 
@@ -93,10 +89,8 @@ class Payment
 
     /**
      * Prep Request Data.
-     *
-     * @return array
      */
-    protected function prepareData() : array
+    protected function prepareData(): array
     {
         $data = [
             'service' => $this->service,
@@ -108,9 +102,7 @@ class Payment
             'redirect'=> $this->redirect,
         ];
 
-        return array_filter($this->savePayment($data), function ($val) {
-            return ! is_null($val);
-        });
+        return array_filter($this->savePayment($data), fn ($val) => ! is_null($val));
     }
 
     /**
@@ -131,15 +123,11 @@ class Payment
             ->withHeaders($headers)
             ->post($this->url, $data);
 
-        if ($response->serverError()) {
-            if (config('mesomb.failed_payments.check')) {
-                CheckFailedTransactions::dispatch($this->payment_model);
-            }
-
-            $response->throw();
-        }
-
         $this->recordPayment($response->json());
+
+        if ($response->failed()) {
+            $this->handleException($response);
+        }
 
         return $this->payment_model;
     }

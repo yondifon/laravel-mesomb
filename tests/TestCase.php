@@ -12,7 +12,6 @@ abstract class TestCase extends TestbenchTestCase
 
     /**
      * Setup the test environment.
-     * @return void
      */
     protected function setUp(): void
     {
@@ -22,7 +21,7 @@ abstract class TestCase extends TestbenchTestCase
     /**
      * Get package providers.
      *
-     * @param  \Illuminate\Foundation\Application  $app
+     * @param \Illuminate\Foundation\Application $app
      *
      * @return array
      */

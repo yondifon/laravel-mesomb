@@ -9,14 +9,7 @@ use Malico\MeSomb\Helper\ModelUUID;
 
 class Payment extends Model
 {
-    use ModelUUID, HasTransactions, HasDeposits;
-
-    /**
-     * The "type" of the auto-incrementing ID.
-     *
-     * @var string
-     */
-    protected $keyType = 'string';
+    use HasDeposits, HasTransactions, ModelUUID;
 
     /**
      * Indicates if the IDs are auto-incrementing.
@@ -24,6 +17,13 @@ class Payment extends Model
      * @var bool
      */
     public $incrementing = false;
+
+    /**
+     * The "type" of the auto-incrementing ID.
+     *
+     * @var string
+     */
+    protected $keyType = 'string';
 
     /**
      * Payment Model Table.
@@ -59,6 +59,5 @@ class Payment extends Model
         if ($this->success && $this->transaction->successful()) {
             return $this->deposit($this->payer, $this->transaction->amount)->pay();
         }
-
     }
 }

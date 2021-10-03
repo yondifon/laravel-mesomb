@@ -8,14 +8,7 @@ use Malico\MeSomb\Helper\ModelUUID;
 
 class Deposit extends Model
 {
-    use ModelUUID, HasTransactions;
-
-    /**
-     * The "type" of the auto-incrementing ID.
-     *
-     * @var string
-     */
-    protected $keyType = 'string';
+    use HasTransactions, ModelUUID;
 
     /**
      * Indicates if the IDs are auto-incrementing.
@@ -23,6 +16,13 @@ class Deposit extends Model
      * @var bool
      */
     public $incrementing = false;
+
+    /**
+     * The "type" of the auto-incrementing ID.
+     *
+     * @var string
+     */
+    protected $keyType = 'string';
 
     /**
      * Guarded Properties.

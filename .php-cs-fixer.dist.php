@@ -170,7 +170,7 @@ $rules = [
     'single_blank_line_at_eof'                               => true,
     'single_blank_line_before_namespace'                     => true,
     'single_class_element_per_statement'                     => true,
-    'single_import_per_statement'                            => true,
+    'group_import'                            => true,
     'single_line_after_imports'                              => true,
     'single_line_comment_style'                              => ['comment_types' => ['hash']],
     'single_quote'                                           => true,

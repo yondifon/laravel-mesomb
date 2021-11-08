@@ -4,9 +4,7 @@ namespace Malico\MeSomb;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Http;
-use Malico\MeSomb\Helper\HandleExceptions;
-use Malico\MeSomb\Helper\PaymentData;
-use Malico\MeSomb\Helper\RecordTransaction;
+use Malico\MeSomb\Helper\{HandleExceptions, PaymentData, RecordTransaction};
 use Malico\MeSomb\Model\Payment as PaymentModel;
 use Malico\MobileCM\Network;
 

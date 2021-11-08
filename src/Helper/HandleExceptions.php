@@ -3,10 +3,7 @@
 namespace Malico\MeSomb\Helper;
 
 use Illuminate\Http\Client\Response;
-use Malico\MeSomb\Exceptions\InsufficientBalanceException;
-use Malico\MeSomb\Exceptions\InvalidAmountException;
-use Malico\MeSomb\Exceptions\InvalidPinException;
-use Malico\MeSomb\Exceptions\TimeoutException;
+use Malico\MeSomb\Exceptions\{InsufficientBalanceException, InvalidAmountException, InvalidPinException, TimeoutException};
 use Malico\MeSomb\Exeptions\InvalidPhoneNumberException;
 
 trait HandleExceptions

@@ -4,8 +4,7 @@ namespace Malico\MeSomb;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Http;
-use Malico\MeSomb\Helper\HandleExceptions;
-use Malico\MeSomb\Helper\RecordTransaction;
+use Malico\MeSomb\Helper\{HandleExceptions, RecordTransaction};
 use Malico\MeSomb\Model\Deposit as DepositModel;
 use Malico\MobileCM\Network;
 

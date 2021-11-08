@@ -3,12 +3,9 @@
 namespace Tests\Unit;
 
 use Illuminate\Http\Client\Request;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Str;
-use Malico\MeSomb\Exceptions\InsufficientBalanceException;
-use Malico\MeSomb\Exceptions\InvalidPinException;
+use Illuminate\Support\Facades\{Config, Http};
+use Illuminate\Support\{Arr, Str};
+use Malico\MeSomb\Exceptions\{InsufficientBalanceException, InvalidPinException};
 use Malico\MeSomb\Exeptions\InvalidPhoneNumberException;
 use Malico\MeSomb\Payment;
 use function Pest\Laravel\assertDatabaseHas;

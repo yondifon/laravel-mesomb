@@ -1,10 +1,8 @@
 <?php
 
 use Illuminate\Http\Client\Request;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Str;
+use Illuminate\Support\Facades\{Config, Http};
+use Illuminate\Support\{Arr, Str};
 use Malico\MeSomb\Deposit;
 use function Pest\Laravel\assertDatabaseHas;
 

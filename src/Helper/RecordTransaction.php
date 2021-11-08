@@ -2,8 +2,7 @@
 
 namespace Malico\MeSomb\Helper;
 
-use Illuminate\Support\Arr;
-use Illuminate\Support\Carbon;
+use Illuminate\Support\{Arr, Carbon};
 
 trait RecordTransaction
 {

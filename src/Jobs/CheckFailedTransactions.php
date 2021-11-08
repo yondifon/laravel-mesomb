@@ -5,8 +5,7 @@ namespace Malico\MeSomb\Jobs;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Queue\SerializesModels;
+use Illuminate\Queue\{InteractsWithQueue, SerializesModels};
 use Malico\MeSomb\Transaction;
 
 class CheckFailedTransactions implements ShouldQueue

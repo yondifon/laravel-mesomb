@@ -1,10 +1,10 @@
 <?php
 
+use function Pest\Laravel\assertDatabaseHas;
 use Illuminate\Http\Client\Request;
 use Illuminate\Support\Facades\{Config, Http};
 use Illuminate\Support\{Arr, Str};
 use Malico\MeSomb\Deposit;
-use function Pest\Laravel\assertDatabaseHas;
 
 function fakeDepositResponse()
 {

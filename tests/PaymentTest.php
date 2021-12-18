@@ -2,13 +2,12 @@
 
 namespace Tests\Unit;
 
+use function Pest\Laravel\assertDatabaseHas;
 use Illuminate\Http\Client\Request;
 use Illuminate\Support\Facades\{Config, Http};
 use Illuminate\Support\{Arr, Str};
-use Malico\MeSomb\Exceptions\{InsufficientBalanceException, InvalidPinException};
-use Malico\MeSomb\Exeptions\InvalidPhoneNumberException;
+use Malico\MeSomb\Exceptions\{InsufficientBalanceException, InvalidPhoneNumberException, InvalidPinException};
 use Malico\MeSomb\Payment;
-use function Pest\Laravel\assertDatabaseHas;
 
 function fakePaymentResponse()
 {

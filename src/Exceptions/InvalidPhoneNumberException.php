@@ -1,6 +1,6 @@
 <?php
 
-namespace Malico\MeSomb\Exeptions;
+namespace Malico\MeSomb\Exceptions;
 
 use Exception;
 

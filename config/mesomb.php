@@ -46,5 +46,13 @@ return [
      */
     'application_cache_key' => 'mesomb_application_status',
 
+    /*
+     * You can choose to wait till the application to wait till the payment is approved
+     * or queue the payment request check later
+     * enum: asynchronous, synchronous
+
+     */
+    'mode' => 'synchronous',
+
     'throw_exceptions' => true,
 ];

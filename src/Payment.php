@@ -113,8 +113,9 @@ class Payment
         $data = $this->prepareData();
 
         $headers = [
-            'X-MeSomb-Application' => config('mesomb.key'),
-            'X-MeSomb-RequestId'   => $this->request_id,
+            'X-MeSomb-Application'   => config('mesomb.key'),
+            'X-MeSomb-RequestId'     => $this->request_id,
+            'X-MeSomb-OperationMode' => config('mesomb.mode'),
         ];
 
         $response = Http::withHeaders($headers)

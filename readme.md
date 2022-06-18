@@ -90,26 +90,20 @@ return [
     'uses_uuid' => false,
 
 
-    /**
-     * Failed Payments
-     *
-     * @var array
-     */
-    'failed_payments' => [
-        /**
-         * Add Failed requests to queue ( to check transactions)
-         *
-         * @var bool
-         */
-        'check' => false
-    ],
-
-    /**
-     * Application Cache Key
-     *
+    /*
      * Used to store the application Status
      */
-    'application_cache_key' => 'mesomb_application_status'
+    'application_cache_key' => 'mesomb_application_status',
+
+    /*
+     * You can choose to wait till the application to wait till the payment is approved
+     * or queue the payment request check later
+     * enum: asynchronous, synchronous
+
+     */
+    'mode' => 'synchronous',
+
+    'throw_exceptions' => true,
 ];
 
 ```

@@ -12,15 +12,14 @@ class Transactions
     public static function getURL(): string
     {
         return 'https://mesomb.hachther.com/api/'
-            .config('mesomb.version')
-            .'/applications/'
-            .config('mesomb.key')
-            .'/transactions/';
+            . config('mesomb.version')
+            . '/applications/'
+            . config('mesomb.key')
+            . '/transactions/';
     }
 
     /**
      * Get all Transactions.
-     *
      *
      * @return null|\Transactions
      */

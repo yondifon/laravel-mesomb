@@ -14,7 +14,7 @@ class MeSombServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPublishing();
-        $this->loadMigrationsFrom(__DIR__.'/../migrations');
+        $this->loadMigrationsFrom(__DIR__ . '/../migrations');
     }
 
     /**
@@ -26,7 +26,7 @@ class MeSombServiceProvider extends ServiceProvider
     {
         $this->publishes(
             [
-                __DIR__.'/../config/mesomb.php' => config_path('mesomb.php'),
+                __DIR__ . '/../config/mesomb.php' => config_path('mesomb.php'),
             ],
             'mesomb-configuration'
         );
@@ -40,7 +40,7 @@ class MeSombServiceProvider extends ServiceProvider
     public function register()
     {
         $this->mergeConfigFrom(
-            __DIR__.'/../config/mesomb.php',
+            __DIR__ . '/../config/mesomb.php',
             'mesomb'
         );
     }

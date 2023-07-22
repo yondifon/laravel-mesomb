@@ -1,10 +1,8 @@
 <?php
 
 use Illuminate\Http\Client\Request;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Str;
+use Illuminate\Support\Facades\{Config, Http};
+use Illuminate\Support\{Arr, Str};
 use Malico\MeSomb\Deposit;
 use function Pest\Laravel\assertDatabaseHas;
 
@@ -14,24 +12,24 @@ function fakeDepositResponse()
 
     Http::fake([
         'https://mesomb.hachther.com/api/*' => Http::response([
-            'success' => true,
-            'redirect' => 'https://malico.me',
-            'message' => 'Deposit Successful',
-            'status' => 'SUCCESS',
+            'success'     => true,
+            'redirect'    => 'https://malico.me',
+            'message'     => 'Deposit Successful',
+            'status'      => 'SUCCESS',
             'transaction' => [
-                'id' => Str::uuid(),
-                'pk' => Str::uuid(),
-                'status' => 'SUCCESS',
-                'amount' => '100',
-                'type' => 'DEPOSIT',
-                'service' => 'MTN',
-                'message' => 'Deposit Successful',
-                'b_party' => '+237676956703',
-                'fees' => 3,
+                'id'          => Str::uuid(),
+                'pk'          => Str::uuid(),
+                'status'      => 'SUCCESS',
+                'amount'      => '100',
+                'type'        => 'DEPOSIT',
+                'service'     => 'MTN',
+                'message'     => 'Deposit Successful',
+                'b_party'     => '+237676956703',
+                'fees'        => 3,
                 'external_id' => '',
-                'ts' => '2020-01-01T00:00:00.000Z',
-                'reference' => '',
-                'direction' => 1,
+                'ts'          => '2020-01-01T00:00:00.000Z',
+                'reference'   => '',
+                'direction'   => 1,
             ],
         ], 200),
     ]);
@@ -48,7 +46,7 @@ function fakeClientErrorResponse($code = 'subscriber-insufficient-balance')
 {
     Http::fake([
         'https://mesomb.hachther.com/api/*' => Http::response([
-            'code' => $code,
+            'code'   => $code,
             'detail' => 'Subscriber does not have enough balance',
         ], 500),
     ]);
@@ -87,7 +85,7 @@ it('creates deposit model after api_request', function () {
     $deposit = $request->pay();
 
     assertDatabaseHas('mesomb_deposits', [
-        'id' => $deposit->id,
+        'id'      => $deposit->id,
         'success' => true,
     ]);
 });
@@ -100,7 +98,7 @@ it('creates transaction model after api_request', function () {
     $deposit = $request->pay();
 
     assertDatabaseHas('mesomb_transactions', [
-        'id' => $deposit->transaction->id,
+        'id'     => $deposit->transaction->id,
         'status' => 'SUCCESS',
     ]);
 });
@@ -114,7 +112,7 @@ it('creates failed deposit model after api_request', function () {
     $deposit = $request->pay();
 
     assertDatabaseHas('mesomb_deposits', [
-        'id' => $deposit->id,
+        'id'      => $deposit->id,
         'success' => false,
     ]);
 });

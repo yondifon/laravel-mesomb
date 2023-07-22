@@ -3,9 +3,7 @@
 namespace Malico\MeSomb\Model;
 
 use Illuminate\Database\Eloquent\Model;
-use Malico\MeSomb\Helper\HasDeposits;
-use Malico\MeSomb\Helper\HasTransactions;
-use Malico\MeSomb\Helper\ModelUUID;
+use Malico\MeSomb\Helper\{HasDeposits, HasTransactions, ModelUUID};
 
 class Payment extends Model
 {

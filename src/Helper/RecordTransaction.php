@@ -2,8 +2,7 @@
 
 namespace Malico\MeSomb\Helper;
 
-use Illuminate\Support\Arr;
-use Illuminate\Support\Carbon;
+use Illuminate\Support\{Arr, Carbon};
 
 trait RecordTransaction
 {
@@ -33,7 +32,7 @@ trait RecordTransaction
     /**
      * Save {Model} Transaction.
      *
-     * @param  array  $data
+     * @param array $data
      */
     protected function saveTransaction($data, $model): void
     {
@@ -48,7 +47,7 @@ trait RecordTransaction
     /**
      * Save Transaction.
      *
-     * @param  \Illuminate\Database\Eloquent\Model  $model
+     * @param \Illuminate\Database\Eloquent\Model $model
      */
     protected function recordTransaction(array $response, $model): void
     {

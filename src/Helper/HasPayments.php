@@ -19,8 +19,9 @@ trait HasPayments
     /**
      * Make Payment.
      *
-     * @param  int|string  $payer
-     * @param  float|int  $amount
+     * @param int|string $payer
+     * @param float|int  $amount
+     *
      * @return Malico\MeSomb\Builder\PaymentBuilder
      */
     public function payment($payer = null, $amount = null)

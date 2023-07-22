@@ -19,8 +19,9 @@ trait HasDeposits
     /**
      * Make Deposit.
      *
-     * @param  int|string  $receiver
-     * @param  float|int  $amount
+     * @param int|string $receiver
+     * @param float|int  $amount
+     *
      * @return Malico\MeSomb\Builder\DepositBuilder
      */
     public function deposit($receiver = null, $amount = null)

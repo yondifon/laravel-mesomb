@@ -72,8 +72,7 @@ trait PaymentData
     /**
      * Modify Payer.
      *
-     * @param int|string $value
-     *
+     * @param  int|string  $value
      * @return Malico\MeSomb\Payment
      */
     public function payer($value)
@@ -86,8 +85,7 @@ trait PaymentData
     /**
      * Same as payer.
      *
-     * @param string $value
-     *
+     * @param  string  $value
      * @return void
      */
     public function phone($value)
@@ -98,8 +96,7 @@ trait PaymentData
     /**
      * Modify Amount.
      *
-     * @param int|string $value
-     *
+     * @param  int|string  $value
      * @return Malico\MeSomb\Payment
      */
     public function amount($value)
@@ -112,8 +109,7 @@ trait PaymentData
     /**
      * Modify Reference.
      *
-     * @param string $value
-     *
+     * @param  string  $value
      * @return Malico\MeSomb\Payment
      */
     public function reference($value)
@@ -126,8 +122,7 @@ trait PaymentData
     /**
      * Modify Message.
      *
-     * @param string $value
-     *
+     * @param  string  $value
      * @return Malico\MeSomb\Payment
      */
     public function message($value)
@@ -140,8 +135,7 @@ trait PaymentData
     /**
      * Modify Currency.
      *
-     * @param string $value
-     *
+     * @param  string  $value
      * @return Malico\MeSomb\Payment
      */
     public function currency($value)
@@ -154,8 +148,7 @@ trait PaymentData
     /**
      * Modify Service.
      *
-     * @param string $value
-     *
+     * @param  string  $value
      * @return Malico\MeSomb\Payment
      */
     public function service($value)
@@ -168,8 +161,7 @@ trait PaymentData
     /**
      * Modify Fees.
      *
-     * @param string $value
-     *
+     * @param  string  $value
      * @return Malico\MeSomb\Payment
      */
     public function fees($value)
@@ -182,8 +174,7 @@ trait PaymentData
     /**
      * Modify Request ID.
      *
-     * @param string $value
-     *
+     * @param  string  $value
      * @return Malico\MeSomb\Payment
      */
     public function requestID($value)

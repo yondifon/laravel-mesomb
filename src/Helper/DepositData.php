@@ -29,8 +29,7 @@ trait DepositData
     /**
      * Modify receiver.
      *
-     * @param int|string $value
-     *
+     * @param  int|string  $value
      * @return Malico\MeSomb\Payment
      */
     public function receiver($value)
@@ -43,8 +42,7 @@ trait DepositData
     /**
      * Same as receiver.
      *
-     * @param string $value
-     *
+     * @param  string  $value
      * @return void
      */
     public function phone($value)
@@ -55,8 +53,7 @@ trait DepositData
     /**
      * Modify Amount.
      *
-     * @param int|string $value
-     *
+     * @param  int|string  $value
      * @return Malico\MeSomb\Payment
      */
     public function amount($value)
@@ -69,8 +66,7 @@ trait DepositData
     /**
      * Modify Service.
      *
-     * @param string $value
-     *
+     * @param  string  $value
      * @return Malico\MeSomb\Payment
      */
     public function service($value)

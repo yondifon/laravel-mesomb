@@ -4,7 +4,8 @@ namespace Malico\MeSomb;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Http;
-use Malico\MeSomb\Helper\{HandleExceptions, RecordTransaction};
+use Malico\MeSomb\Helper\HandleExceptions;
+use Malico\MeSomb\Helper\RecordTransaction;
 use Malico\MeSomb\Model\Deposit as DepositModel;
 use Malico\MobileCM\Network;
 
@@ -70,7 +71,7 @@ class Deposit
     /**
      * Save Deposit bef[return description]ore request.
      *
-     * @param array $data
+     * @param  array  $data
      */
     protected function saveDeposit($data): array
     {
@@ -88,8 +89,8 @@ class Deposit
     {
         $data = [
             'service' => $this->service,
-            'amount'  => $this->amount,
-            'receiver'=> trim($this->receiver, '+'),
+            'amount' => $this->amount,
+            'receiver' => trim($this->receiver, '+'),
         ];
 
         return array_filter($this->saveDeposit($data));

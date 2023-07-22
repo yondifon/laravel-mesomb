@@ -22,8 +22,7 @@ class Transaction
     /**
      * Check Transaction sTatus.
      *
-     * @param \Malico\MeSomb\Model\Deposit|\Malico\MeSomb\Model\Payment $model
-     *
+     * @param  \Malico\MeSomb\Model\Deposit|\Malico\MeSomb\Model\Payment  $model
      * @return null|\Malico\MeSomb\Model\Transaction
      */
     public static function checkStatus($model)

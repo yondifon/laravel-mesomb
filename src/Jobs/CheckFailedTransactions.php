@@ -5,7 +5,8 @@ namespace Malico\MeSomb\Jobs;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
-use Illuminate\Queue\{InteractsWithQueue, SerializesModels};
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Queue\SerializesModels;
 use Malico\MeSomb\Transaction;
 
 class CheckFailedTransactions implements ShouldQueue
@@ -22,8 +23,7 @@ class CheckFailedTransactions implements ShouldQueue
     /**
      * Create a new job instance.
      *
-     * @param \Malico\MeSomb\Model\Payment $model
-     *
+     * @param  \Malico\MeSomb\Model\Payment  $model
      * @return void
      */
     public function __construct($model)

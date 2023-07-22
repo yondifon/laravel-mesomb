@@ -4,7 +4,9 @@ namespace Malico\MeSomb;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Http;
-use Malico\MeSomb\Helper\{HandleExceptions, PaymentData, RecordTransaction};
+use Malico\MeSomb\Helper\HandleExceptions;
+use Malico\MeSomb\Helper\PaymentData;
+use Malico\MeSomb\Helper\RecordTransaction;
 use Malico\MeSomb\Model\Payment as PaymentModel;
 use Malico\MobileCM\Network;
 
@@ -73,7 +75,7 @@ class Payment
     /**
      * Save Payment before request.
      *
-     * @param array $data
+     * @param  array  $data
      */
     protected function savePayment($data): array
     {
@@ -91,12 +93,12 @@ class Payment
     protected function prepareData(): array
     {
         $data = [
-            'service'  => $this->service,
-            'amount'   => $this->amount,
-            'payer'    => $this->payer,
-            'fees'     => $this->fees,
+            'service' => $this->service,
+            'amount' => $this->amount,
+            'payer' => $this->payer,
+            'fees' => $this->fees,
             'currency' => $this->currency,
-            'message'  => $this->message,
+            'message' => $this->message,
             'redirect' => $this->redirect,
         ];
 
@@ -113,8 +115,8 @@ class Payment
         $data = $this->prepareData();
 
         $headers = [
-            'X-MeSomb-Application'   => config('mesomb.key'),
-            'X-MeSomb-RequestId'     => $this->request_id,
+            'X-MeSomb-Application' => config('mesomb.key'),
+            'X-MeSomb-RequestId' => $this->request_id,
             'X-MeSomb-OperationMode' => config('mesomb.mode'),
         ];
 
@@ -133,8 +135,7 @@ class Payment
     /**
      * Record Response to DATABAase.
      *
-     * @param array|json $response
-     *
+     * @param  array|json  $response
      * @return void
      */
     protected function recordPayment($response)

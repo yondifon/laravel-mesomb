@@ -3,9 +3,13 @@
 namespace Tests\Unit;
 
 use Illuminate\Http\Client\Request;
-use Illuminate\Support\Facades\{Config, Http};
-use Illuminate\Support\{Arr, Str};
-use Malico\MeSomb\Exceptions\{InsufficientBalanceException, InvalidPhoneNumberException, InvalidPinException};
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Str;
+use Malico\MeSomb\Exceptions\InsufficientBalanceException;
+use Malico\MeSomb\Exceptions\InvalidPhoneNumberException;
+use Malico\MeSomb\Exceptions\InvalidPinException;
 use Malico\MeSomb\Payment;
 use function Pest\Laravel\assertDatabaseHas;
 
@@ -15,24 +19,24 @@ function fakePaymentResponse()
 
     Http::fake([
         'https://mesomb.hachther.com/api/*' => Http::response([
-            'success'     => true,
-            'redirect'    => 'https://malico.me',
-            'message'     => 'Payment Successful',
-            'status'      => 'SUCCESS',
+            'success' => true,
+            'redirect' => 'https://malico.me',
+            'message' => 'Payment Successful',
+            'status' => 'SUCCESS',
             'transaction' => [
-                'id'          => Str::uuid(),
-                'pk'          => Str::uuid(),
-                'status'      => 'SUCCESS',
-                'amount'      => '100',
-                'type'        => 'PAYMENT',
-                'service'     => 'MTN',
-                'message'     => 'PAYMENT    Successful',
-                'b_party'     => '+237676956703',
-                'fees'        => 3,
+                'id' => Str::uuid(),
+                'pk' => Str::uuid(),
+                'status' => 'SUCCESS',
+                'amount' => '100',
+                'type' => 'PAYMENT',
+                'service' => 'MTN',
+                'message' => 'PAYMENT    Successful',
+                'b_party' => '+237676956703',
+                'fees' => 3,
                 'external_id' => '',
-                'ts'          => '2020-01-01T00:00:00.000Z',
-                'reference'   => '',
-                'direction'   => 1,
+                'ts' => '2020-01-01T00:00:00.000Z',
+                'reference' => '',
+                'direction' => 1,
             ],
         ], 200),
     ]);
@@ -42,7 +46,7 @@ function fakeServerErrorResponse($code = 'subscriber-insufficient-balance', $mes
 {
     Http::fake([
         'https://mesomb.hachther.com/api/*' => Http::response([
-            'code'   => $code,
+            'code' => $code,
             'detail' => $message,
         ], 500),
     ]);
@@ -87,11 +91,11 @@ it('creates payment model after request', function () {
     $payment = $request->pay();
 
     assertDatabaseHas('mesomb_payments', [
-        'id'      => $payment->id,
-        'amount'  => 100,
-        'status'  => 'SUCCESS',
+        'id' => $payment->id,
+        'amount' => 100,
+        'status' => 'SUCCESS',
         'service' => 'MTN',
-        'payer'   => 67282929,
+        'payer' => 67282929,
     ]);
 });
 
@@ -102,11 +106,11 @@ it('creates transaction model after api_request', function () {
     $payment = $request->pay();
 
     assertDatabaseHas('mesomb_transactions', [
-        'id'     => $payment->transaction->id,
-        'pk'     => $payment->transaction->pk,
+        'id' => $payment->transaction->id,
+        'pk' => $payment->transaction->pk,
         'status' => 'SUCCESS',
         'amount' => 100,
-        'type'   => 'PAYMENT',
+        'type' => 'PAYMENT',
     ]);
 });
 
@@ -118,7 +122,7 @@ it('creates failed payment model after api_request', function () {
     $payment = $request->pay();
 
     assertDatabaseHas('mesomb_payments', [
-        'id'      => $payment->id,
+        'id' => $payment->id,
         'success' => false,
     ]);
 });

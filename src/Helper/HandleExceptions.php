@@ -3,19 +3,23 @@
 namespace Malico\MeSomb\Helper;
 
 use Illuminate\Http\Client\Response;
-use Malico\MeSomb\Exceptions\{InsufficientBalanceException, InvalidAmountException, InvalidPhoneNumberException, InvalidPinException, TimeoutException};
+use Malico\MeSomb\Exceptions\InsufficientBalanceException;
+use Malico\MeSomb\Exceptions\InvalidAmountException;
+use Malico\MeSomb\Exceptions\InvalidPhoneNumberException;
+use Malico\MeSomb\Exceptions\InvalidPinException;
+use Malico\MeSomb\Exceptions\TimeoutException;
 
 trait HandleExceptions
 {
     public $errorCodes = [
         'subscriber-insufficient-balance' => InsufficientBalanceException::class,
-        'subscriber-not-found'            => InvalidPhoneNumberException::class,
-        'subscriber-invalid-length'       => InvalidPhoneNumberException::class,
-        'subscriber-invalid-secret-code'  => InvalidPinException::class,
-        'subscriber-invalid-min-amount'   => InvalidAmountException::class,
-        'subscriber-invalid-max-amount'   => InvalidAmountException::class,
-        'subscriber-timeout'              => TimeoutException::class,
-        'subscriber-internal-error'       => TimeoutException::class,
+        'subscriber-not-found' => InvalidPhoneNumberException::class,
+        'subscriber-invalid-length' => InvalidPhoneNumberException::class,
+        'subscriber-invalid-secret-code' => InvalidPinException::class,
+        'subscriber-invalid-min-amount' => InvalidAmountException::class,
+        'subscriber-invalid-max-amount' => InvalidAmountException::class,
+        'subscriber-timeout' => TimeoutException::class,
+        'subscriber-internal-error' => TimeoutException::class,
     ];
 
     public function handleException(Response $response)

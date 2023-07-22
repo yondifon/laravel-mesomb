@@ -2,7 +2,8 @@
 
 namespace Malico\MeSomb;
 
-use Illuminate\Support\Facades\{Cache, Http};
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Http;
 
 class Application
 {
@@ -14,10 +15,10 @@ class Application
     protected static function generateURL(): string
     {
         return 'https://mesomb.hachther.com/api/'
-                    . config('mesomb.version')
-                    . '/applications/'
-                    . config('mesomb.key')
-                    . '/status';
+                    .config('mesomb.version')
+                    .'/applications/'
+                    .config('mesomb.key')
+                    .'/status';
     }
 
     /**
